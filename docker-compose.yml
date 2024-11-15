@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data  # Volumen para la base de datos
+    env_file:
+      - .env
+    restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"  # Usa el UID/GID del usuario host
